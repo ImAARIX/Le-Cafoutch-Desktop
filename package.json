@@ -1,0 +1,19 @@
+{
+  "name": "sweet-game-suppose-8oy6u",
+  "productName": "sweet-game-suppose-8oy6u",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
+  "version": "1.0.0",
+  "author": "cleme",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "electron": "16.0.6"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}
