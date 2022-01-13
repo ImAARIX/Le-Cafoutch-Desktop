@@ -14,6 +14,7 @@ const icon = nativeImage.createFromPath(path.join(__dirname, './assets/img/icons
 
 // START OF UPDATE CODE
 async function searchForUpdate() {
+	try {
 	var versionFile = fs.readFileSync(path.join(__dirname, './assets/json/version.json'));
   	var versionParsed = JSON.parse(versionFile);
 
@@ -29,13 +30,27 @@ async function searchForUpdate() {
 		console.log('Up to date');
 		return false;
 	}
+	} catch(e) {
+		const options = {
+			type: 'question',
+			buttons: ['Ok'],
+			defaultId: 0,
+			title: "Vous n'êtes pas connecté à internet.",
+			message: "Vous n'êtes pas connecté à internet.",
+			detail: "Vous ne pouvez donc pas lancer l'application."
+		}
+		dialog.showMessageBox(null, options).then(() => {
+			app.quit();
+		})
+		return;
+	}
 }
 
 function showUpdateDialog(webVersion) {
 	const options = {
 		type: 'question',
 		buttons: ['Mettre à jour', 'Quitter'],
-		defaultId: 2,
+		defaultId: 0,
 		title: 'Mise à jour disponible',
 		message: 'Mise à jour ' + webVersion + ' disponible.',
 		detail: "Veuillez la télécharger depuis le site web et l'installer.",
