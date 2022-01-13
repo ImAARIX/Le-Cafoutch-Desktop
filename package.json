@@ -1,6 +1,6 @@
 {
-  "name": "sweet-game-suppose-8oy6u",
-  "productName": "sweet-game-suppose-8oy6u",
+  "name": "Le-Cafoutch Desktop",
+  "productName": "Le-Cafoutch Desktop",
   "description": "My Electron application description",
   "keywords": [],
   "main": "./main.js",
@@ -10,10 +10,10 @@
     "start": "electron ."
   },
   "devDependencies": {
-    "@types/electron": "^1.6.10",
-    "electron": "16.0.6"
+    "electron": "^15.3.5"
   },
   "dependencies": {
+    "@electron/remote": "^2.0.1",
     "jquery": "^3.6.0"
   }
 }

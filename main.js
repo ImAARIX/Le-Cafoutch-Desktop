@@ -2,9 +2,10 @@
 const {app, Tray, Menu, nativeImage, BrowserWindow} = require('electron');
 const { truncate } = require('fs');
 const path = require('path')
+const url = require('url');
+const remote = require('@electron/remote/main').initialize();
 var tray = null;
 const icon = nativeImage.createFromPath('C:/Users/cleme/Desktop/Autre/CQFD.png');
-const remote = require('electron').remote;
 
 function createWindow () {
   // Create the browser window.
@@ -16,19 +17,25 @@ function createWindow () {
     resizable: false,
     frame: false,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
-      enableRemoteModule: true
+      enableRemoteModule: true,
+      contextIsolation: false,
+      preload: path.join(__dirname, './assets/node_js/preload.js'),
     },
     show: false,
     icon: icon
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
-  return mainWindow;
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  mainWindow.openDevTools();
+  require("@electron/remote/main").enable(mainWindow.webContents);
+  return mainWindow;
 }
 
 // This method will be called when Electron has finished
@@ -48,7 +55,6 @@ app.whenReady().then(() => {
   win.once('ready-to-show', () => {
     tray = new Tray(icon);
     const contextMenu = Menu.buildFromTemplate([
-      {label: 'Ouvrir', role: 'window'},
       {label: 'Quitter', role: 'quit'}
     ]);
     tray.setContextMenu(contextMenu);
@@ -64,9 +70,6 @@ app.whenReady().then(() => {
         win.show();
       }
     })
-
-    //var xButton = document.getElementById('xButton');
-    
   })
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -79,7 +82,7 @@ app.whenReady().then(() => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', function () {
-  //if (process.platform !== 'darwin') app.quit()
+  if (process.platform !== 'darwin') app.quit()
 })
 
 // In this file you can include the rest of your app's specific main process
