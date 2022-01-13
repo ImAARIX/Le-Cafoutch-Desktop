@@ -84,7 +84,7 @@ async function launchApp() {
 					  slashes: true
 				}));
 				// Open the DevTools.
-				mainWindow.openDevTools();
+				// mainWindow.openDevTools();
 				require("@electron/remote/main").enable(mainWindow.webContents);
 				return mainWindow;
 		  }
@@ -94,9 +94,9 @@ async function launchApp() {
 		  
 		  
 			//DEBUG
-			win.once('ready-to-show', () => {
-				  win.show();
-			})
+			// win.once('ready-to-show', () => {
+			// 	  win.show();
+			// })
 			//DEBUG
 	  
 	  
