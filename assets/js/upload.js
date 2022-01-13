@@ -148,14 +148,13 @@ async function agrougrouter() {
         
         r.json().then((data) => {
 	        textToCopy.innerText = data.url;
+            if(copy()) {
+                agrougrouterButton.style.backgroundColor = "#6ea4bf";
+                agrougrouterButton.value = "Copié !";
+            } else {
+                agrougrouterButton.style.backgroundColor = "red";
+            }
         });
-
-        if(copy()) {
-            agrougrouterButton.style.backgroundColor = "#6ea4bf";
-            agrougrouterButton.value = "Copié !";
-        } else {
-            agrougrouterButton.style.backgroundColor = "red";
-        }
     } catch(e) {
         console.log('Huston we have problem...:', e);
         agrougrouterButton.style.backgroundColor = "red";

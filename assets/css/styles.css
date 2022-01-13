@@ -1,4 +1,13 @@
-/* styles.css */
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+@keyframes zoom2 {
+    from {transform:scale(1)}
+    to {transform:scale(0)}
+}
+
 * {
     z-index: 1;
 }
