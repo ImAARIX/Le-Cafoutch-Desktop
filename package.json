@@ -1,7 +1,7 @@
 {
-  "name": "Le-Cafoutch Desktop",
-  "productName": "Le-Cafoutch Desktop",
-  "description": "My Electron application description",
+  "name": "le-cafoutch-desktop",
+  "productName": "Le Cafoutch Desktop",
+  "description": "Le Cafoutch Desktop est une application créé par AARIX.social permettant d'uploader ses fichiers depuis son pc.",
   "keywords": [],
   "main": "./main.js",
   "version": "1.0.0",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@electron/remote": "^2.0.1",
-    "axios": "^0.24.0"
+    "axios": "^0.24.0",
+    "check-internet-connected": "^2.0.5"
   }
 }
