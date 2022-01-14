@@ -147,12 +147,31 @@ async function agrougrouter() {
         })
         
         r.json().then((data) => {
-	        textToCopy.innerText = data.url;
-            if(copy()) {
-                agrougrouterButton.style.backgroundColor = "#6ea4bf";
-                agrougrouterButton.value = "Copié !";
+            error = data.error;
+            if(error == "true") {
+                requestresponsecode = data.requestresponsecode;
+                switch(requestresponsecode) {
+                    case "2":
+                        errorr("Aucune URL n'a été entrée");
+                        break;
+                    case "3":
+                        errorr("L'URL ne contient pas de https:// ou de https://.");
+                        break;
+                    case "4":
+                        errorr("L'URL provient déjà de agrougrou.");
+                        break;
+                    case "5":
+                        errorr("Mauvaise utilisation.");
+                        break;
+                }
             } else {
-                agrougrouterButton.style.backgroundColor = "red";
+                textToCopy.innerText = data.url;
+                if(copy()) {
+                    agrougrouterButton.style.backgroundColor = "#6ea4bf";
+                    agrougrouterButton.value = "Copié !";
+                } else {
+                    agrougrouterButton.style.backgroundColor = "red";
+                }
             }
         });
     } catch(e) {

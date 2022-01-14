@@ -120,10 +120,11 @@ async function launchApp() {
 				  const contextMenu = Menu.buildFromTemplate([
 						{label: 'Quitter', role: 'quit'}
 				  ]);
+				  tray.setToolTip('Le Cafoutch Desktop');
 				  tray.setContextMenu(contextMenu);
 				  tray.displayBalloon({
-						title: 'Le-Cafoutch Desktop',
-						content: 'Le-Cafoutch Desktop tourne actuellement en arrière plan.'
+						title: 'Le Cafoutch Desktop',
+						content: 'Le Cafoutch Desktop tourne actuellement en arrière plan.'
 				  });
 	  
 				  tray.on('click', () => {
